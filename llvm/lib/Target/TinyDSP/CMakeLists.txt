@@ -13,10 +13,12 @@ tablegen(LLVM TinyDSPGenSubtargetInfo.inc -gen-subtarget)
 add_public_tablegen_target(TinyDSPCommonTableGen)
 
 add_llvm_target(TinyDSPCodeGen
+  TinyDSPAsmPrinter.cpp
   TinyDSPFrameLowering.cpp
   TinyDSPInstrInfo.cpp
   TinyDSPISelDAGToDAG.cpp
   TinyDSPISelLowering.cpp
+  TinyDSPMCInstLower.cpp
   TinyDSPRegisterInfo.cpp
   TinyDSPSubtarget.cpp
   TinyDSPTargetMachine.cpp
