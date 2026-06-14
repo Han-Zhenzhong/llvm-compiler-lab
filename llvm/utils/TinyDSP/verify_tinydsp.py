@@ -113,7 +113,7 @@ def main():
         sys.exit(1)
     
     llvm_build_dir = sys.argv[1]
-    repo_root = Path(__file__).resolve().parents[2]
+    repo_root = Path(__file__).resolve().parents[3]
     c_file = repo_root / "llvm" / "test" / "CodeGen" / "TinyDSP" / "Inputs" / "test_basic.c"
     asm_file = Path(__file__).parent / "test_basic.s"
 
