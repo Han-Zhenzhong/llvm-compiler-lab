@@ -18,5 +18,6 @@ Target &llvm::getTheTinyDSPTarget() {
 
 extern "C" LLVM_ABI LLVM_EXTERNAL_VISIBILITY void
 LLVMInitializeTinyDSPTargetInfo() {
-  RegisterTarget<> X(getTheTinyDSPTarget(), "tinydsp", "TinyDSP", "TinyDSP");
+  RegisterTarget<Triple::tinydsp> X(getTheTinyDSPTarget(), "tinydsp",
+                                    "TinyDSP", "TinyDSP");
 }

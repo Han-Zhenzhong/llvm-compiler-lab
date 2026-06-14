@@ -150,6 +150,8 @@ StringRef Triple::getArchTypeName(ArchType Kind) {
     return "xcore";
   case xtensa:
     return "xtensa";
+  case tinydsp:
+    return "tinydsp";
   }
 
   llvm_unreachable("Invalid ArchType!");
@@ -351,6 +353,9 @@ StringRef Triple::getArchTypePrefix(ArchType Kind) {
 
   case xtensa:
     return "xtensa";
+
+  case tinydsp:
+    return "tinydsp";
   }
 }
 
@@ -724,6 +729,7 @@ Triple::ArchType Triple::getArchTypeForLLVMName(StringRef Name) {
       .Case("loongarch64", loongarch64)
       .Case("dxil", dxil)
       .Case("xtensa", xtensa)
+      .Case("tinydsp", tinydsp)
       .Default(UnknownArch);
 }
 
@@ -877,6 +883,7 @@ Triple::ArchType Triple::parseArch(StringRef ArchName) {
                   "dxilv1.9"},
                  Triple::dxil)
           .Case("xtensa", Triple::xtensa)
+            .Case("tinydsp", Triple::tinydsp)
           .Default(Triple::UnknownArch);
 
   // Some architectures require special parsing logic just to compute the
@@ -1239,6 +1246,7 @@ static Triple::ObjectFormatType getDefaultFormat(const Triple &T) {
   case Triple::ve:
   case Triple::xcore:
   case Triple::xtensa:
+  case Triple::tinydsp:
     return Triple::ELF;
 
   case Triple::mipsel:
@@ -1976,6 +1984,7 @@ unsigned Triple::getArchPointerBitWidth(llvm::Triple::ArchType Arch) {
   case llvm::Triple::x86:
   case llvm::Triple::xcore:
   case llvm::Triple::xtensa:
+  case llvm::Triple::tinydsp:
     return 32;
 
   case llvm::Triple::aarch64:
@@ -2087,6 +2096,7 @@ Triple Triple::get32BitArchVariant() const {
   case Triple::x86:
   case Triple::xcore:
   case Triple::xtensa:
+  case Triple::tinydsp:
     // Already 32-bit.
     break;
 
@@ -2171,6 +2181,7 @@ Triple Triple::get64BitArchVariant() const {
   case Triple::tce:
   case Triple::xcore:
   case Triple::xtensa:
+  case Triple::tinydsp:
     T.setArch(UnknownArch);
     break;
 
@@ -2457,6 +2468,7 @@ bool Triple::isLittleEndian() const {
   case Triple::x86_64:
   case Triple::xcore:
   case Triple::xtensa:
+  case Triple::tinydsp:
     return true;
   default:
     return false;
@@ -2690,6 +2702,7 @@ ExceptionHandling Triple::getDefaultExceptionHandling() const {
   case Triple::systemz:
   case Triple::xcore:
   case Triple::xtensa:
+  case Triple::tinydsp:
     return ExceptionHandling::DwarfCFI;
   default:
     break;
