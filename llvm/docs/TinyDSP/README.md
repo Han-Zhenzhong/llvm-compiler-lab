@@ -102,6 +102,23 @@ ninja
 
 ## Usage
 
+### Current Output and Linking Status
+
+TinyDSP support is currently intended for assembly generation and simulator-based
+validation.
+
+- Fully supported workflow: compile C to `.s` and run verification with the
+    Python simulator.
+- Partially supported: generating `.o` files for experimentation.
+- Not yet supported as a complete toolchain: producing linked TinyDSP
+    executables with a TinyDSP-aware linker/runtime flow.
+
+Notes:
+- The backend currently uses placeholder ELF/relocation behavior in parts of
+    the MC object writer path.
+- `lld` does not currently provide a TinyDSP target implementation in this
+    tree.
+
 ### Compiling C to TinyDSP Assembly
 
 ```bash
@@ -114,6 +131,28 @@ clang -target tinydsp -S -O2 test.c -o test_opt.s
 # Generate object file
 clang -target tinydsp -c test.c -o test.o
 ```
+
+### How to inspect your generated test.o
+
+After generating an object file, inspect its structure and contents with LLVM
+binary utilities:
+
+```bash
+# 1) ELF header (class, machine, file type)
+llvm-readelf -h test.o
+
+# 2) Relocation entries (if any)
+llvm-readelf -r test.o
+
+# 3) Symbol table (functions/objects/externals)
+llvm-readelf -s test.o
+
+# 4) Disassembly of code sections
+llvm-objdump -d test.o
+```
+
+These commands are useful for checking whether code bytes, symbols, and
+relocation information match expectations during backend bring-up.
 
 ### Example
 
@@ -259,6 +298,10 @@ llvm-objdump -d test.o > test.bin
 - Basic optimization (no advanced peephole optimizations)
 - Limited debug information generation
 - No inline assembly support
+- Object emission support is incomplete for production use (ELF machine/reloc
+    details are still placeholder-level)
+- End-to-end linked TinyDSP executables are not currently supported in this
+    tree
 
 ## Future Enhancements
 
