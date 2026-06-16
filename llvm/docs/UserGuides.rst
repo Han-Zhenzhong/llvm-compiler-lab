@@ -41,6 +41,7 @@ intermediate LLVM representation.
    GoldPlugin
    GlobalISel/MIRPatterns
    HowToBuildOnARM
+   HowToBuildProtoGPUCustomClang
    HowToBuildWithPGO
    HowToBuildWindowsItaniumPrograms
    HowToCrossCompileBuiltinsOnArm
@@ -91,6 +92,10 @@ Clang
 
 :doc:`HowToBuildOnARM`
    Notes on building and testing LLVM/Clang on ARM.
+
+:doc:`HowToBuildProtoGPUCustomClang`
+   Notes on building a custom LLVM/Clang with NVPTX support for ProtoGPU
+   custom PTX instruction emission.
 
 :doc:`HowToBuildWithPGO`
     Notes on building LLVM/Clang with PGO.

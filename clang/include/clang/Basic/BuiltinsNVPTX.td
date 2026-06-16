@@ -846,6 +846,9 @@ def __nvvm_redux_sync_fmax_abs : NVPTXBuiltinSMAndPTX<"float(float, int)", SM_10
 def __nvvm_redux_sync_fmax_NaN : NVPTXBuiltinSMAndPTX<"float(float, int)", SM_100a, PTX86>;
 def __nvvm_redux_sync_fmax_abs_NaN : NVPTXBuiltinSMAndPTX<"float(float, int)", SM_100a, PTX86>;
 
+// ProtoGPU custom instruction: warp_reduce_add.f32 dst, src
+def __nvvm_warp_reduce_add : NVPTXBuiltin<"float(float)">;
+
 // Membar
 
 def __nvvm_membar_cta : NVPTXBuiltin<"void()">;

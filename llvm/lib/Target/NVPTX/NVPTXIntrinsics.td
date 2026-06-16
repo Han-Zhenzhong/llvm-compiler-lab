@@ -352,6 +352,10 @@ defm REDUX_SYNC_FMAX_ABS : REDUX_SYNC_F<"max", ".abs", "">;
 defm REDUX_SYNC_FMAX_NAN: REDUX_SYNC_F<"max", "", ".NaN">;
 defm REDUX_SYNC_FMAX_ABS_NAN: REDUX_SYNC_F<"max", ".abs", ".NaN">;
 
+def WARP_REDUCE_ADD_F32 : BasicNVPTXInst<(outs B32:$dst), (ins B32:$src),
+                    "warp_reduce_add.f32",
+                    [(set f32:$dst, (int_nvvm_warp_reduce_add f32:$src))]>;
+
 } // isConvergent = true
 
 //-----------------------------------

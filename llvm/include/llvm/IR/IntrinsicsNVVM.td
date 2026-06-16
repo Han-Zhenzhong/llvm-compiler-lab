@@ -2585,6 +2585,10 @@ let IntrProperties = [IntrConvergent, IntrInaccessibleMemOnly, IntrNoCallback] i
     def int_nvvm_redux_sync_ # op : NVVMBuiltin,
       Intrinsic<[llvm_i32_ty], [llvm_i32_ty, llvm_i32_ty]>;
 
+  // warp_reduce_add.f32 dst, src;
+  def int_nvvm_warp_reduce_add : NVVMBuiltin,
+    Intrinsic<[llvm_float_ty], [llvm_float_ty]>;
+
   // redux.sync.op.{abs}.{NaN}.f32 dst, src, membermask;
   foreach binOp = ["min", "max"] in
     foreach abs = ["", "_abs"] in
